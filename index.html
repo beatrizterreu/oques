@@ -5,37 +5,30 @@
 <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
 <title>Una sorpresa de los Reyes Magos</title>
 <style>
-:root{--bg:#fff7e6;--fg:#2b1b0e;--accent:#e63946;--gold:#f4b400;--card:#ffffff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
-@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#1b1226;--fg:#fff3d6;--card:#2a1c3a}}
-:root[data-theme="dark"]{--bg:#1b1226;--fg:#fff3d6;--card:#2a1c3a}
-body{background:var(--bg);color:var(--fg);font-family:Georgia,"Times New Roman",serif;margin:0;text-align:center;overflow-x:hidden}
-main{max-width:440px;margin:0 auto;padding:28px 22px 40px}
-h1{font-size:2rem;line-height:1.15;margin:.4em 0}
+:root{--bg1:#0b1d4a;--bg2:#1e4fa3;--gold:#ffd54a;--ice:#e8f4ff;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+html{background:#0b1d4a}
+body{margin:0;min-height:100vh;background:linear-gradient(180deg,var(--bg1),var(--bg2));color:var(--ice);font-family:Georgia,"Times New Roman",serif;text-align:center;overflow-x:hidden}
+main{max-width:440px;margin:0 auto;padding:28px 22px 44px;position:relative}
+h1{font-size:2rem;line-height:1.15;margin:.4em 0;color:#fff}
 p{font-size:1.15rem;line-height:1.5;margin:.5em 0}
 .crowns{font-size:3rem;letter-spacing:.1em}
 .gift{font-size:6rem;display:block;animation:wiggle 1.6s infinite}
 @keyframes wiggle{0%,100%{transform:rotate(-6deg)}50%{transform:rotate(6deg)}}
-button{font:inherit;font-size:1.15rem;background:var(--accent);color:#fff;border:0;border-radius:999px;padding:13px 26px;margin:6px 0;width:100%}
-button.alt{background:var(--gold);color:#2b1b0e}
-#reveal,.pass{display:none}
-.card{background:var(--card);border:3px solid var(--gold);border-radius:20px;padding:12px 18px;margin:16px 0}
-.band{font-size:2.3rem;font-weight:bold;color:var(--accent);margin:.1em 0}
-.big{font-size:1.9rem;font-weight:bold}
-.stars{animation:tw 2s infinite}@keyframes tw{50%{opacity:.4}}
+.btn,button{display:block;box-sizing:border-box;width:100%;font:inherit;font-size:1.15rem;text-decoration:none;background:var(--gold);color:#0b1d4a;font-weight:bold;border:0;border-radius:999px;padding:14px 26px;margin:10px 0;box-shadow:0 0 18px rgba(255,213,74,.45)}
+.btn.alt{background:#fff}
+#reveal{display:none}
+.card{background:rgba(255,255,255,.1);border:3px solid var(--gold);border-radius:20px;padding:12px 18px;margin:16px 0}
+.band{font-size:2.4rem;font-weight:bold;color:var(--gold);margin:.1em 0;text-shadow:0 0 14px rgba(255,213,74,.6)}
+.big{font-size:1.9rem;font-weight:bold;color:var(--gold)}
+.tw{animation:tw 2s infinite}@keyframes tw{50%{opacity:.4}}
 canvas{position:fixed;inset:0;pointer-events:none}
-@media print{
- canvas,main>section,.crowns{display:none!important}
- body[data-print="e"] #pe,body[data-print="p"] #pp{display:block}
- .pass{text-align:center;border:5px solid #e63946;border-radius:24px;padding:40px;margin:20px;color:#2b1b0e;background:#fff}
- .pass .big{font-size:2.6rem}
-}
 </style>
 </head>
 <body>
 <canvas id="c"></canvas>
 <main>
   <section id="intro">
-    <div class="crowns stars">✨</div>
+    <div class="crowns tw">❄️✨❄️</div>
     <span class="gift">🎁</span>
     <h1>Los Reyes Magos os dejaron un regalo...</h1>
     <p>Todavía no lo habéis abierto.</p>
@@ -53,37 +46,26 @@ canvas{position:fixed;inset:0;pointer-events:none}
     </div>
     <p>Y hay pase de parking, para aparcar pegadito al concierto. 🚗</p>
     <p>Os recojo a las 19:00. Id ligeritos. 🎶</p>
-    <button onclick="pr('e')">🎟️ Imprimir entradas</button>
-    <button class="alt" onclick="pr('p')">🅿️ Imprimir pase de parking</button>
-    <p class="stars">⭐ Nos vemos pronto... o quizá en diciembre ⭐<br>Con cariño, Sus Majestades de Oriente</p>
+    <a class="btn" href="entradas.pdf" download>Descargar entradas</a>
+    <a class="btn alt" href="parking.pdf" download>Descargar pase parking</a>
+    <p class="tw">⭐ Nos vemos pronto... o quizá en diciembre ⭐<br>Con cariño, Sus Majestades de Oriente</p>
   </section>
 </main>
-<div class="pass" id="pe">
-  <div style="font-size:3rem">👑👑👑</div><h1>Vuestras entradas</h1><p>Un regalo de los Reyes Magos</p>
-  <div class="band">Oques Grasses</div><p>Miércoles 7 de octubre</p>
-  <p>Sector <span class="big">120</span></p><p>Fila <span class="big">13</span> · Butaca <span class="big">13</span></p>
-  <p>Acceso por la puerta 5 lateral</p>
-</div>
-<div class="pass" id="pp">
-  <div style="font-size:3rem">👑👑👑</div><h1>Pase de parking</h1><p>Un regalo de los Reyes Magos</p>
-  <div class="band">Oques Grasses</div><p>Miércoles 7 de octubre</p>
-  <p>Acceso: <span class="big">puerta 5 lateral</span></p><p>Aparcamiento junto al recinto</p>
-</div>
 <script>
-var c=document.getElementById('c'),x=c.getContext('2d'),p=[];
+var c=document.getElementById('c'),x=c.getContext('2d'),f=[];
 function size(){c.width=innerWidth;c.height=innerHeight}size();addEventListener('resize',size);
-function go(){
-  for(var i=0;i<160;i++)p.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*.6,v:2+Math.random()*4,s:5+Math.random()*7,h:Math.random()<.5?45:Math.random()*360});
-  (function f(){x.clearRect(0,0,c.width,c.height);
-    p.forEach(function(q){q.y+=q.v;x.fillStyle='hsl('+q.h+',90%,55%)';x.fillRect(q.x,q.y,q.s,q.s)});
-    p=p.filter(function(q){return q.y<c.height});
-    if(p.length)requestAnimationFrame(f)})();
-}
+for(var i=0;i<70;i++)f.push({x:Math.random()*c.width,y:Math.random()*c.height,r:1.5+Math.random()*3,v:.4+Math.random()*1.2,d:Math.random()*6});
+(function loop(){x.clearRect(0,0,c.width,c.height);x.fillStyle='rgba(255,255,255,.85)';
+ f.forEach(function(s){s.y+=s.v;s.d+=.02;s.x+=Math.sin(s.d)*.6;if(s.y>c.height){s.y=-5;s.x=Math.random()*c.width}
+  x.beginPath();x.arc(s.x,s.y,s.r,0,6.3);x.fill()});requestAnimationFrame(loop)})();
+var burst=[];
+function go(){for(var i=0;i<120;i++)burst.push({x:Math.random()*c.width,y:-20-Math.random()*c.height*.5,v:2+Math.random()*4,s:5+Math.random()*6,h:Math.random()<.6?48:205})}
+(function b(){x.save();burst.forEach(function(q){q.y+=q.v;x.fillStyle='hsl('+q.h+',90%,60%)';x.fillRect(q.x,q.y,q.s,q.s)});
+ burst=burst.filter(function(q){return q.y<c.height});x.restore();requestAnimationFrame(b)})();
 document.getElementById('open').onclick=function(){
-  document.getElementById('intro').style.display='none';
-  document.getElementById('reveal').style.display='block';go();
+ document.getElementById('intro').style.display='none';
+ document.getElementById('reveal').style.display='block';go();
 };
-function pr(k){document.body.setAttribute('data-print',k);window.print()}
 </script>
 </body>
 </html>
